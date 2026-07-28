@@ -1,0 +1,6 @@
+{
+  "name": "Akashaterapia",
+  "description": "Website premium de harmonização energética integrada, radiestesia terapêutica e bem-estar holístico contemporâneo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

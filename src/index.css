@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Montserrat", sans-serif;
+  
+  --color-petroleo: #12343B;
+  --color-dourado: #C9A86A;
+  --color-marfim: #F8F3EB;
+  --color-bege: #E7D8C7;
+  --color-salvia: #8D979A;
+  
+  --color-petroleo-light: #1c4b54;
+  --color-petroleo-dark: #091a1e;
+  --color-dourado-hover: #bda061;
+}
+
+/* Custom CSS Scrollbar and elegant custom styles */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+body {
+  background-color: var(--color-marfim);
+  color: var(--color-petroleo);
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-dourado);
+  color: var(--color-marfim);
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-marfim);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-salvia);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dourado);
+}
+
