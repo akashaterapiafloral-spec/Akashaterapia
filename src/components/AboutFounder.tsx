@@ -1,8 +1,22 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Compass, Palette, Sparkles, Feather } from 'lucide-react';
 import { IMAGES } from '../assets';
 
 export default function AboutFounder() {
+  const [photoIndex, setPhotoIndex] = useState(0);
+
+  const photoCandidates = [
+    '/images/yvevalente.png',
+    '/images/yvevalente.jpg',
+    IMAGES.yveValenteImg
+  ];
+
+  const handleImgError = () => {
+    if (photoIndex < photoCandidates.length - 1) {
+      setPhotoIndex(prev => prev + 1);
+    }
+  };
   return (
     <section id="quem-sou" className="py-20 md:py-28 bg-petroleo text-marfim border-t border-dourado/20 relative overflow-hidden">
       {/* Soft background ambient glows */}
@@ -41,10 +55,11 @@ export default function AboutFounder() {
               {/* Photo Frame Container */}
               <div className="relative rounded-2xl overflow-hidden bg-petroleo-dark border border-dourado/40 shadow-2xl">
                 <img
-                  src={IMAGES.yveValenteImg}
+                  src={photoCandidates[photoIndex]}
                   alt="Yve Valente - Fundadora da Akashaterapia e Designeria.Art"
                   className="w-full h-auto object-cover object-center transition-transform duration-500 group-hover:scale-102"
                   referrerPolicy="no-referrer"
+                  onError={handleImgError}
                 />
 
                 {/* Discrete Label Badge */}
