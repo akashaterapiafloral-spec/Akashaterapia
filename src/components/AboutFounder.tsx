@@ -1,46 +1,8 @@
-import { useState, useEffect, ChangeEvent } from 'react';
 import { motion } from 'motion/react';
-import { Compass, Palette, Sparkles, Feather, Camera, Upload, RefreshCw } from 'lucide-react';
+import { Compass, Palette, Sparkles, Feather } from 'lucide-react';
 import { IMAGES } from '../assets';
 
 export default function AboutFounder() {
-  const [photoUrl, setPhotoUrl] = useState<string>(IMAGES.yveValenteImg);
-  const [isCustom, setIsCustom] = useState<boolean>(false);
-
-  useEffect(() => {
-    const savedPhoto = localStorage.getItem('yve_custom_photo');
-    if (savedPhoto) {
-      setPhotoUrl(savedPhoto);
-      setIsCustom(true);
-    }
-  }, []);
-
-  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result as string;
-        if (result) {
-          setPhotoUrl(result);
-          setIsCustom(true);
-          try {
-            localStorage.setItem('yve_custom_photo', result);
-          } catch {
-            // If localStorage is full, still keep it in state
-          }
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleResetPhoto = () => {
-    localStorage.removeItem('yve_custom_photo');
-    setPhotoUrl(IMAGES.yveValenteImg);
-    setIsCustom(false);
-  };
-
   return (
     <section id="quem-sou" className="py-20 md:py-28 bg-petroleo text-marfim border-t border-dourado/20 relative overflow-hidden">
       {/* Soft background ambient glows */}
@@ -79,14 +41,10 @@ export default function AboutFounder() {
               {/* Photo Frame Container */}
               <div className="relative rounded-2xl overflow-hidden bg-petroleo-dark border border-dourado/40 shadow-2xl">
                 <img
-                  src={photoUrl}
+                  src={IMAGES.yveValenteImg}
                   alt="Yve Valente - Fundadora da Akashaterapia e Designeria.Art"
                   className="w-full h-auto object-cover object-center transition-transform duration-500 group-hover:scale-102"
                   referrerPolicy="no-referrer"
-                  onError={() => {
-                    setPhotoUrl(IMAGES.yveValenteImg);
-                    setIsCustom(false);
-                  }}
                 />
 
                 {/* Discrete Label Badge */}
@@ -96,41 +54,6 @@ export default function AboutFounder() {
                 </div>
               </div>
             </motion.div>
-
-            {/* Photo Action Controls */}
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <label
-                htmlFor="upload-yve-photo"
-                className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-dourado/15 hover:bg-dourado/30 text-dourado border border-dourado/40 rounded-full text-xs font-sans font-medium transition-all duration-300 hover:scale-105 shadow-sm"
-                title="Carregar a sua foto original sem alterações de IA"
-              >
-                <Upload size={14} />
-                <span>{isCustom ? 'Substituir por outra foto' : 'Carregar Minha Foto Original'}</span>
-              </label>
-              <input
-                type="file"
-                id="upload-yve-photo"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="hidden"
-              />
-
-              {isCustom && (
-                <button
-                  type="button"
-                  onClick={handleResetPhoto}
-                  className="inline-flex items-center gap-1.5 px-3 py-2 bg-petroleo-dark/60 hover:bg-petroleo-dark text-marfim/70 hover:text-marfim border border-marfim/20 rounded-full text-xs font-sans transition-all"
-                  title="Restaurar visualização inicial"
-                >
-                  <RefreshCw size={12} />
-                  <span>Restaurar</span>
-                </button>
-              )}
-            </div>
-            <p className="text-[11px] text-marfim/50 text-center mt-2 max-w-xs">
-              <Camera size={12} className="inline mr-1 text-dourado" />
-              Clique acima para selecionar o seu arquivo original direto do seu dispositivo.
-            </p>
           </div>
 
           {/* Text Description Column */}

@@ -16,7 +16,6 @@ import FAQ from './components/FAQ';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
-import ExportBanner from './components/ExportBanner';
 
 export default function App() {
   const scrollToSection = (id: string) => {
@@ -99,9 +98,6 @@ export default function App() {
 
       {/* Floating Interactive WhatsApp Widget */}
       <WhatsAppWidget />
-
-      {/* Floating ZIP Export Banner */}
-      <ExportBanner />
 
     </div>
   );
